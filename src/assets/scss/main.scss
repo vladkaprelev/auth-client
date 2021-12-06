@@ -1,0 +1,36 @@
+@import "colors";
+
+body {
+  margin: 0;
+  padding: 0;
+  color: $text-accent;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.02px;
+}
+
+* {
+  box-sizing: border-box;
+
+}
+
+ul, ol {
+  all: unset;
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+}
+
+h1, h2, h3, h4, h5, p {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
