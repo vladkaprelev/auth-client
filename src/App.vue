@@ -1,30 +1,27 @@
 <template>
   <router-view/>
   <div class="notification">
-    <Notifications :notifications="notifications"/>
+    <Notification :notification="notification" v-if="notification"/>
   </div>
 </template>
 <script>
 import {defineComponent} from "vue";
 import EventObserver from "@/classes/EventObserver";
-import Notifications from "@/components/Notifications/Notifications";
+import Notification from "@/components/Notifications/Notification";
 
 export default defineComponent({
   name: 'App',
-  components: {Notifications},
+  components: {Notification},
   props: {},
   data() {
     return {
-      notifications: []
+      notification: null
     };
   },
   mounted() {
     EventObserver.subscribe('notification', (data) => {
       console.log(data)
-      if (this.notifications.length === 5) {
-        this.notifications.shift()
-      }
-      this.notifications.push(data)
+      this.notification = (data)
     })
   },
   beforeDestroy() {

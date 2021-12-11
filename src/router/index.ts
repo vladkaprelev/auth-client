@@ -1,23 +1,27 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import LayoutMain from "@/layout/LayoutMain.vue";
 import LayoutAuth from "@/layout/LayoutAuth.vue";
+import LocalStorage from "@/api/LocalStorage";
+import User from "@/components/User/User.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Main",
     component: LayoutMain,
-    meta: {
-      requiresAuth: true,
-    },
+    children: [
+      {
+        path: "/user",
+        name: "User",
+        component: User,
+      },
+    ],
   },
+
   {
     path: "/login",
     name: "Auth",
     component: LayoutAuth,
-    meta: {
-      requiresAuth: false,
-    },
   },
 ];
 
@@ -26,22 +30,19 @@ const router = createRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   console.log();
-//   console.log(from);
-//   const isNeedAuthorization: boolean = to.matched.some(
-//     (item) => item.meta.requiresAuth
-//   );
-//   if (isNeedAuthorization) {
-//     console.log("Проверка токена");
-//     next({
-//       name: "Auth",
-//       params: { nextUrl: to.fullPath },
-//     });
-//   } else {
-//     console.log("Авторизация");
-//     next();
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  if (!!LocalStorage.get("accessToken")) {
+    if (to.name === "Auth") {
+      return next("/");
+    }
+    return next();
+  }
+  const isLogin = to.matched.some((item) => item.path === "/login");
+  if (isLogin) {
+    return next();
+  } else {
+    return next("/login");
+  }
+});
 
 export default router;

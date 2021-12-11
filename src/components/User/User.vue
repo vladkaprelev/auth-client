@@ -1,16 +1,12 @@
 <template>
-  <div class="main">
-    <button @click="handleLogout">Logout</button>
-    <router-view/>
-  </div>
+  <div>user</div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {mapActions} from 'vuex';
 
 export default defineComponent({
-  name: 'LayoutMain',
+  name: 'User',
   components: {},
   props: {
     msg: String,
@@ -22,16 +18,12 @@ export default defineComponent({
   },
   beforeDestroy() {
   },
-  methods: {
-    ...mapActions(['logout']),
-    handleLogout() {
-      this.logout();
-    }
-  },
+  methods: {},
   computed: {},
 });
 </script>
 
 <style scoped lang="scss">
+@import "~@/assets/scss/colors";
 
 </style>

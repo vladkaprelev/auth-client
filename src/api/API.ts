@@ -15,7 +15,7 @@ abstract class API implements InterfaceAPI {
   }
 
   post(data: Record<string, any>, endpoint: string): Promise<any> {
-    return instanceAxios.post("/login", data);
+    return instanceAxios.post(`/${endpoint}`, data);
   }
 }
 

@@ -1,9 +1,8 @@
 <template>
-  <li :class="['notification',`notification_${notification.type}`]">
-    <h3>{{ notification.type }}</h3>
+  <div :class="['notification',`notification_${notification.type}`]">
     <p class="notification__message"> {{ notification.message }}</p>
     <span class="notification__icon" @click="handleClose"><IconCross/></span>
-  </li>
+  </div>
 </template>
 
 <script lang="ts">
@@ -18,11 +17,7 @@ export default defineComponent({
       type: Object,
       default: () => {
       }
-    },
-    index: {
-      type: Number,
-      default: 0
-    },
+    }
   },
   data() {
     return {};
@@ -33,7 +28,7 @@ export default defineComponent({
   },
   methods: {
     handleClose() {
-      console.log(this.index);
+      console.log(this.notification);
     }
   },
   computed: {},
@@ -44,26 +39,16 @@ export default defineComponent({
 @import "~@/assets/scss/colors";
 
 .notification {
-  padding: 8px;
-  background-color: #fff;
-  box-shadow: $shadow;
-  width: 320px;
-  height: 60px;
-  display: flex;
-  border-radius: 4px;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 400;
-  align-items: flex-start;
-  justify-content: flex-start;
-  position: relative;
-  user-select: none;
-  margin-bottom: 8px;
+  top: 16px;
+  right: 16px;
+  position: absolute;
+  background: rgba(45, 45, 47, 0.7);
+  backdrop-filter: blur(5px);
+  color: #E1E1E1;
+  border-radius: 20px;
+  width: 340px;
+  height: 100px;
 
-  &_error {
-    color: $accent;
-    background-color: rgba($accent, 50%);
-  }
 
   &__icon {
     position: absolute;
