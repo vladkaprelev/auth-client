@@ -17,7 +17,12 @@ export default createStore({
         "registration"
       )
         .then((res) => {
-          console.log(res);
+          console.log(res.data.userData);
+          LocalStorage.set("accessToken", res.data.userData.accessToken);
+          LocalStorage.set("user", JSON.stringify(res.data.userData.user));
+          router.replace("/user").catch((e) => {
+            console.log(e);
+          });
         })
         .catch((e) => {
           console.log(e);
@@ -27,9 +32,20 @@ export default createStore({
       AuthModel.logout({}, "logout")
         .then((res) => {
           LocalStorage.delete("accessToken");
+          LocalStorage.delete("user");
+          console.log(LocalStorage);
           router.push("/login").catch((e) => {
             console.log(e);
           });
+          console.log(res);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    getUsers() {
+      AuthModel.getUsers({}, "users")
+        .then((res) => {
           console.log(res);
         })
         .catch((e) => {
@@ -44,14 +60,17 @@ export default createStore({
       )
         .then((res) => {
           LocalStorage.set("accessToken", res.data.userData.accessToken);
-          console.log(router);
-          router.replace("/").catch((e) => {
+          LocalStorage.set("user", JSON.stringify(res.data.userData.user));
+          router.replace("/user").catch((e) => {
             console.log(e);
           });
         })
         .catch((e) => {
           console.log(e);
         });
+    },
+    refresh() {
+      return AuthModel.refresh({}, "refresh");
     },
   },
   modules: {},

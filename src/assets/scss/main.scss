@@ -1,21 +1,37 @@
+@use "sass:map";
 @import "colors";
 
 body {
   margin: 0;
   padding: 0;
-  color: $text-accent;
+
+}
+
+.app {
+  margin: 0;
+  padding: 0;
+  color: map.get($text-default, "light");
+  background-color: map.get($bg, "light");
   font-family: 'Inter', sans-serif;
   text-align: center;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
   letter-spacing: -0.02px;
+  transition: color 0.8s ease-in-out, background-color 0.8s ease-in-out, fill 0.8s ease-in-out, border-color 0.8s ease-in-out;
+
+  &_dark {
+    color: map.get($text-default, "dark");
+    background-color: map.get($bg, "dark");
+
+  }
 }
 
 * {
   box-sizing: border-box;
 
 }
+
 
 ul, ol {
   all: unset;
@@ -27,6 +43,7 @@ ul, ol {
 h1, h2, h3, h4, h5, p {
   margin: 0;
   padding: 0;
+  line-height: 150%;
 }
 
 h1 {

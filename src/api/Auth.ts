@@ -12,6 +12,14 @@ class Auth extends API {
   logout(data: Record<string, any>, endpoint: string): Promise<any> {
     return this.post(data, endpoint);
   }
+
+  getUsers(data: Record<string, any>, endpoint: string): Promise<any> {
+    return this.get(data, endpoint);
+  }
+
+  refresh(data: Record<string, any>, endpoint: string): Promise<any> {
+    return this.get(data, endpoint);
+  }
 }
 
 export default Auth;

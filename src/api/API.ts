@@ -1,4 +1,4 @@
-import { baseURL } from "@/globalVarible/globalVarible";
+import { baseURL } from "../../globalVarible";
 import instanceAxios from "@/api/axios";
 
 interface InterfaceAPI {
@@ -16,6 +16,10 @@ abstract class API implements InterfaceAPI {
 
   post(data: Record<string, any>, endpoint: string): Promise<any> {
     return instanceAxios.post(`/${endpoint}`, data);
+  }
+
+  get(data: Record<string, any>, endpoint: string): Promise<any> {
+    return instanceAxios.get(`/${endpoint}`, data);
   }
 }
 

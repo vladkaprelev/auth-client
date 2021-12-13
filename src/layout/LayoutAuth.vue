@@ -41,7 +41,7 @@ export default defineComponent({
   height: 100%;
 
   &__block {
-    background-color: $text-accent;
+    background-color: #fff;
     width: 100%;
     height: 100%;
   }

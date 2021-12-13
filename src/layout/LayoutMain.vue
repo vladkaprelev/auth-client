@@ -1,17 +1,19 @@
 <template>
   <div class="main">
-    <button @click="handleLogout">Logout</button>
+    <Navbar/>
+    <h1 class="main__title">Using the validateStatus config option, you can define HTTP code(s) that should throw an
+      error.</h1>
     <router-view/>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {mapActions} from 'vuex';
+import Navbar from '@/components/Navbar/Navbar.vue';
 
 export default defineComponent({
   name: 'LayoutMain',
-  components: {},
+  components: {Navbar},
   props: {
     msg: String,
   },
@@ -22,16 +24,19 @@ export default defineComponent({
   },
   beforeDestroy() {
   },
-  methods: {
-    ...mapActions(['logout']),
-    handleLogout() {
-      this.logout();
-    }
-  },
+  methods: {},
   computed: {},
 });
 </script>
 
 <style scoped lang="scss">
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
 
+  &__title {
+    padding-top: 20px;
+  }
+}
 </style>
