@@ -1,8 +1,9 @@
 <template>
   <aside class="navbar">
+    <div class="navbar__text navbar__text_red"></div>
     <p>{{ user.email }}</p>
     <button class="navbar__logout" @click="handleLogout">Logout</button>
-    <button class="navbar__logout" @click="handleToggle">toggle theme</button>
+    <Toggle/>
   </aside>
 </template>
 
@@ -10,10 +11,11 @@
 import {defineComponent} from 'vue';
 import {mapActions} from 'vuex';
 import LocalStorage from '@/api/LocalStorage';
+import Toggle from '@/components/Toggle/Toggle.vue';
 
 export default defineComponent({
   name: 'Navbar',
-  components: {},
+  components: {Toggle},
   props: {},
   data() {
     return {
@@ -31,10 +33,7 @@ export default defineComponent({
       this.logout();
     },
     handleToggle() {
-      const app = document.querySelector('.app');
-      if (app) {
-        app.classList.toggle('app_dark');
-      }
+
     }
   },
   computed: {},
@@ -51,7 +50,8 @@ export default defineComponent({
   flex-flow: column;
   align-items: center;
   justify-content: space-between;
-  box-shadow: $shadow;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
   &__logout {
     margin-bottom: 30px;

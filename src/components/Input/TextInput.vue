@@ -56,37 +56,35 @@ export default defineComponent({
     padding: 11px 16px;
     min-width: 320px;
     border-radius: 12px;
-    border: 1px solid $input;
+    border: 1px solid;
     outline: none;
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.02em;
-    background-color: $input;
     transition: all 0.3s ease;
 
     &:hover {
-      border: 1px solid $input-hover;
-      background-color: $input-hover;
+      border: 1px solid;
 
     }
 
     &:active {
-      border: 1px solid $input;
+      border: 1px solid;
 
       background-color: #fff;
     }
 
     &:focus {
-      border: 1px solid $input;
+      border: 1px solid;
 
       background-color: #fff;
     }
 
     &_success {
-      border: 1px solid $success;
+      border: 1px solid;
 
       &:hover, &:active, &:focus {
-        border: 1px solid $success;
+        border: 1px solid;
       }
     }
   }
@@ -94,7 +92,6 @@ export default defineComponent({
   &__error {
     font-size: 12px;
     line-height: 16px;
-    color: $accent;
     position: absolute;
     bottom: 8px;
   }

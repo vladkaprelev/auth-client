@@ -1,13 +1,18 @@
 <template>
-  <router-view/>
-  <div class="notification">
-    <Notification :notification="notification" v-if="notification"/>
+  <div :class="[isDarkMode ? 'theme--dark' : 'theme--default']">
+
+    <router-view/>
+    <div class="notification">
+      <Notification :notification="notification" v-if="notification"/>
+    </div>
   </div>
+
 </template>
 <script>
 import {defineComponent} from "vue";
 import EventObserver from "@/classes/EventObserver";
 import Notification from "@/components/Notifications/Notification";
+import {mapState} from "vuex";
 
 export default defineComponent({
   name: 'App',
@@ -27,7 +32,10 @@ export default defineComponent({
   beforeDestroy() {
   },
   methods: {},
-  computed: {},
+  computed: {
+    ...mapState(['isDarkMode'])
+
+  },
 });
 </script>
 <style lang="scss">
