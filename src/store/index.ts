@@ -7,12 +7,12 @@ const AuthModel = new Auth();
 export default createStore({
   state: {
     isAuth: !!LocalStorage.get("accessToken"),
-    isDarkMode: false,
+    isDarkMode: !!LocalStorage.get("isDarkMode"),
   },
   mutations: {
     SET_THEME_MODE(state, mode) {
       state.isDarkMode = mode;
-      console.log(state.isDarkMode);
+      LocalStorage.set("isDarkMode", mode);
     },
   },
   actions: {

@@ -1,5 +1,5 @@
 <template>
-  <div :class="[isDarkMode ? 'theme--dark' : 'theme--default']">
+  <div class="body" :class="[isDarkMode ? 'theme--dark' : 'theme--default']">
 
     <router-view/>
     <div class="notification">
@@ -41,7 +41,7 @@ export default defineComponent({
 <style lang="scss">
 @use "~@/assets/scss/main.scss";
 
-#app {
+.body {
   margin: 0;
   padding: 0;
   width: 100vw;
