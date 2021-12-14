@@ -1,26 +1,35 @@
-import { baseURL } from "../../globalVarible";
 import instanceAxios from "@/api/axios";
 
 interface InterfaceAPI {
-  baseUrl: string;
-
   post(data: Record<string, any>, endpoint: string): Promise<any>;
+
+  get(data: Record<string, any>, endpoint: string): Promise<any>;
+
+  delete(data: Record<string, any>, endpoint: string): Promise<any>;
+
+  update(data: Record<string, any>, endpoint: string): Promise<any>;
 }
 
-abstract class API implements InterfaceAPI {
-  baseUrl: string;
+interface Data {
+  [key: string]: any;
+}
 
-  constructor() {
-    this.baseUrl = baseURL;
-  }
-
-  post(data: Record<string, any>, endpoint: string): Promise<any> {
+class API implements InterfaceAPI {
+  post(data: Data, endpoint: string): Promise<any> {
     return instanceAxios.post(`/${endpoint}`, data);
   }
 
-  get(data: Record<string, any>, endpoint: string): Promise<any> {
+  get(data: Data, endpoint: string): Promise<any> {
     return instanceAxios.get(`/${endpoint}`, data);
+  }
+
+  delete(data: Data, endpoint: string): Promise<any> {
+    return instanceAxios.delete(`/${endpoint}`, data);
+  }
+
+  update(data: Data, endpoint: string): Promise<any> {
+    return instanceAxios.put(`/${endpoint}`, data);
   }
 }
 
-export default API;
+export default new API();

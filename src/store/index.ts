@@ -1,9 +1,8 @@
 import { createStore } from "vuex";
-import Auth from "@/api/Auth";
+import API from "@/api/API";
 import LocalStorage from "@/api/LocalStorage";
 import router from "@/router";
 
-const AuthModel = new Auth();
 export default createStore({
   state: {
     isAuth: !!LocalStorage.get("accessToken"),
@@ -17,8 +16,7 @@ export default createStore({
   },
   actions: {
     registration(store, payload) {
-      console.log(payload);
-      AuthModel.registration(
+      API.post(
         { email: payload.email, password: payload.password },
         "registration"
       ).then((res) => {
@@ -31,20 +29,20 @@ export default createStore({
       });
     },
     logout() {
-      AuthModel.logout({}, "logout").then(() => {
+      API.post({}, "logout").then(() => {
         LocalStorage.delete("accessToken");
         LocalStorage.delete("user");
         router.push("/login");
       });
     },
     getUsers() {
-      AuthModel.getUsers({}, "users").then((res) => {
+      API.get({}, "users").then((res) => {
         console.log(res);
       });
     },
     authorization(store, payload) {
       console.log(payload);
-      AuthModel.authorization(
+      API.post(
         { email: payload.email, password: payload.password },
         "login"
       ).then((res) => {
@@ -54,7 +52,7 @@ export default createStore({
       });
     },
     refresh() {
-      return AuthModel.refresh({}, "refresh");
+      return API.post({}, "refresh");
     },
   },
   modules: {},

@@ -19,7 +19,11 @@ const setToken = (token: string | null) => {
 setToken(LocalStorage.get("accessToken"));
 type ErrorFunction = (message: any) => any | void;
 
-const errorsStatus: Record<number, ErrorFunction> = {
+interface ErrorInterface {
+  [key: number]: ErrorFunction;
+}
+
+const errorsStatus: ErrorInterface = {
   400: (error: any) => {
     EventObserver.broadcast("notification", {
       message: error.response.data.message,
